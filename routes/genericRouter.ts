@@ -1,7 +1,8 @@
 import express, { Router } from "express";
 import GenericController from "../controllers/genericController";
+import { Document } from "mongoose";
 
-export default function createGenericRouter<T>(
+export default function createGenericRouter<T extends Document>(
   controller: GenericController<T>
 ): Router {
   const router = express.Router();
