@@ -1,8 +1,8 @@
 import createGenericRouter from "./genericRouter";
-import Persona from "../models/persona";
+import Instrumento from "../models/instrumento";
 import GenericController from "../controllers/genericController";
 
-const controller = new GenericController(Persona);
+const controller = new GenericController(Instrumento);
 
 const router = createGenericRouter(controller);
 export default router;

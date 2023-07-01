@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import mongoose, { Connection } from "mongoose";
 import dotenv from "dotenv";
 import personasRouter from "./routes/personas";
+import instrumentosRouter from "./routes/instrumentos";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 
 // Rutas para las personas
 app.use("/personas", personasRouter);
+app.use("/instrumentos", instrumentosRouter);
 
 // Resto de tu configuración de Express y rutas
 // ...

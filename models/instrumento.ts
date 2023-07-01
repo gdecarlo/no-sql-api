@@ -1,9 +1,9 @@
 import mongoose, { Model } from "mongoose";
 import { IEntity, entitySchema } from "./interfaces/IEntity";
 
-const Persona: Model<IEntity> = mongoose.model<IEntity>(
-  "Persona",
+const Instrumento: Model<IEntity> = mongoose.model<IEntity>(
+  "Instrumento",
   entitySchema
 );
 
-export default Persona;
+export default Instrumento;
