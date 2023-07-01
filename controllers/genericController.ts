@@ -1,9 +1,10 @@
-class GenericController {
-  constructor(Entity) {
-    this.Entity = Entity;
-  }
+import { Request, Response } from "express";
+import { Model } from "mongoose";
 
-  getAllEntities = async (req, res) => {
+export default class GenericController<T> {
+  constructor(private Entity: Model<T>) {}
+
+  getAllEntities = async (req: Request, res: Response) => {
     try {
       const entities = await this.Entity.find();
       res.json(entities);
@@ -12,7 +13,7 @@ class GenericController {
     }
   };
 
-  getEntityById = async (req, res) => {
+  getEntityById = async (req: Request, res: Response) => {
     try {
       const entity = await this.Entity.findById(req.params.id);
       res.json(entity);
@@ -21,7 +22,7 @@ class GenericController {
     }
   };
 
-  createEntity = async (req, res) => {
+  createEntity = async (req: Request, res: Response) => {
     try {
       const entity = new this.Entity(req.body);
       await entity.save();
@@ -31,7 +32,7 @@ class GenericController {
     }
   };
 
-  updateEntity = async (req, res) => {
+  updateEntity = async (req: Request, res: Response) => {
     try {
       const entity = await this.Entity.findByIdAndUpdate(
         req.params.id,
@@ -44,7 +45,7 @@ class GenericController {
     }
   };
 
-  deleteEntity = async (req, res) => {
+  deleteEntity = async (req: Request, res: Response) => {
     try {
       const entity = await this.Entity.findByIdAndRemove(req.params.id);
       res.json(entity);
@@ -53,5 +54,3 @@ class GenericController {
     }
   };
 }
-
-module.exports = GenericController;

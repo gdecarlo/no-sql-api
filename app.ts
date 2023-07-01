@@ -1,21 +1,19 @@
-const express = require("express");
-const mongoose = require("mongoose");
-require("dotenv").config();
+import express, { Application } from "express";
+import mongoose, { Connection } from "mongoose";
+import dotenv from "dotenv";
+import personasRouter from "./routes/personas";
 
-const personasRouter = require("./routes/personas");
+dotenv.config();
 
-const app = express();
+const app: Application = express();
 
 // Configuración de la conexión a MongoDB con Mongoose
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.renekck.mongodb.net/?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+  {}
 );
 
-const db = mongoose.connection;
+const db: Connection = mongoose.connection;
 db.on("error", console.error.bind(console, "Error de conexión a MongoDB:"));
 db.once("open", function () {
   console.log("Conexión exitosa a la base de datos MongoDB");

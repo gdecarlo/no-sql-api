@@ -1,7 +1,11 @@
-const express = require("express");
-const router = express.Router();
+import express, { Router } from "express";
+import GenericController from "../controllers/genericController";
 
-module.exports = function (controller) {
+export default function createGenericRouter<T>(
+  controller: GenericController<T>
+): Router {
+  const router = express.Router();
+
   router.get("/", controller.getAllEntities);
   router.get("/:id", controller.getEntityById);
   router.post("/", controller.createEntity);
@@ -9,4 +13,4 @@ module.exports = function (controller) {
   router.delete("/:id", controller.deleteEntity);
 
   return router;
-};
+}
