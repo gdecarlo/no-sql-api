@@ -6,6 +6,8 @@ import instrumentosRouter from "./routes/instrumentos";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3030;
+
 const app: Application = express();
 
 // Configuración de la conexión a MongoDB con Mongoose
@@ -31,6 +33,6 @@ app.use("/instrumentos", instrumentosRouter);
 // ...
 
 // Inicia el servidor
-app.listen(3000, function () {
-  console.log("Servidor iniciado en el puerto 3000");
+app.listen(PORT, function () {
+  console.log(`Servidor iniciado en el puerto ${PORT}`);
 });
